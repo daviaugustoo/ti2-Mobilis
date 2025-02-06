@@ -1,0 +1,32 @@
+:root{
+    --color1: #687DAC;
+    --color2: #D2E0EE;
+    --color3: #F2E3D2;
+    --color4: #b0d8ca;
+    --color5: #78a5a0;
+}
+.container-fluid{
+    background-image: -moz-linear-gradient( 136deg, #C8D9D3 0%, #D2E0EE 100%);
+    background-image: -webkit-linear-gradient( 136deg, #C8D9D3 0%, #b3cee9 100%);
+    background-image: -ms-linear-gradient( 136deg, #C8D9D3 0%, #D2E0EE 100%);
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    overflow: auto;
+}
+
+.bgcolor1{
+    background-color: var(--color1)
+}
+.bgcolor2{
+    background-color: var(--color2)
+}
+.bgcolor3{
+    background-color: var(--color3)
+}
+.bgcolor4{
+    background-color: var(--color4)
+}
+.bgcolor5{
+    background-color: var(--color5)
+}

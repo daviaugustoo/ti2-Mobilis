@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Table 04</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="assets/css/tabExercicio.css">
+    <link rel="stylesheet" href="assets/css/starRatingEditable.css">
+    <link rel="stylesheet" href="assets/css/checkboxes.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+          crossorigin="anonymous">
+</head>
+<body>
+<section class="ftco-section">
+    <div class="container tabela">          
+
+        <a type="button" class="btn" href="fichaPac.html" style=" position: relative; float: inline-start;">Voltar</a>
+        <button type="button" class="btn" 
+        style="position: relative;  float: inline-end; margin-right: 25px" onclick = "Finalizar();">
+        
+          Finalizar</button>
+        <h4 class="text-center mb-4">Exercícios do Usuário</h4>
+        <div class="table-wrap">
+            <table class="table table-bordered text-center" id="tabela">
+                <thead>
+                    <tr>
+                        <th>Exercicio</th>
+                        <th>Consegui fazer o exercício?</th>
+                        <th>Oque achou do exercício?</th>
+                    </tr>
+                </thead>
+                <tbody id="linhas">
+                    <tr>
+                        <!-- Rows will be populated here by JavaScript -->
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <!-- Optional footer content -->
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</section>
+
+	<script src="assets/jquery/jquery-3.2.1.min.js"></script>
+    <script src="assets/js/avaliarFichaPac.js"></script>
+    <script src

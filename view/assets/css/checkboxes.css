@@ -1,0 +1,95 @@
+.checkbox-wrapper-5 .check {
+    --size: 40px !important;
+
+    position: relative !important;
+    background: linear-gradient(90deg, #84A29F, #687DAC) !important;
+    line-height: 0 !important;
+    perspective: 400px !important;
+    font-size: var(--size) !important;
+}
+
+.checkbox-wrapper-5 .check input[type="checkbox"],
+.checkbox-wrapper-5 .check label,
+.checkbox-wrapper-5 .check label::before,
+.checkbox-wrapper-5 .check label::after,
+.checkbox-wrapper-5 .check {
+    appearance: none !important;
+    display: inline-block !important;
+    border-radius: var(--size) !important;
+    border: 0 !important;
+    transition: .35s ease-in-out !important;
+    box-sizing: border-box !important;
+    cursor: pointer !important;
+}
+
+.checkbox-wrapper-5 .check label {
+    width: calc(2.2 * var(--size)) !important;
+    height: var(--size) !important;
+    background: #d7d7d7 !important;
+    overflow: hidden !important;
+}
+
+.checkbox-wrapper-5 .check input[type="checkbox"] {
+    position: absolute !important;
+    z-index: 1 !important;
+    width: calc(.8 * var(--size)) !important;
+    height: calc(.8 * var(--size)) !important;
+    top: calc(.1 * var(--size)) !important;
+    left: calc(.1 * var(--size)) !important;
+    background: linear-gradient(45deg, #dedede, #ffffff) !important;
+    box-shadow: 0 6px 7px rgba(0,0,0,0.3) !important;
+    outline: none !important;
+    margin: 0 !important;
+}
+
+.checkbox-wrapper-5 .check input[type="checkbox"]:checked {
+    left: calc(1.3 * var(--size)) !important;
+}
+
+.checkbox-wrapper-5 .check input[type="checkbox"]:checked + label {
+    background: transparent !important;
+}
+
+.checkbox-wrapper-5 .check label::before,
+.checkbox-wrapper-5 .check label::after {
+    content: "· ·" !important;
+    position: absolute !important;
+    overflow: hidden !important;
+    left: calc(.15 * var(--size)) !important;
+    top: calc(.5 * var(--size)) !important;
+    height: var(--size) !important;
+    letter-spacing: calc(-0.04 * var(--size)) !important;
+    color: #9b9b9b !important;
+    font-family: "Times New Roman", serif !important;
+    z-index: 2 !important;
+    font-size: calc(.6 * var(--size)) !important;
+    border-radius: 0 !important;
+    transform-origin: 0 0 calc(-0.5 * var(--size)) !important;
+    backface-visibility: hidden !important;
+}
+
+.checkbox-wrapper-5 .check label::after {
+    content: "●" !important;
+    top: calc(.65 * var(--size)) !important;
+    left: calc(.2 * var(--size)) !important;
+    height: calc(.1 * var(--size)) !important;
+    width: calc(.35 * var(--size)) !important;
+    font-size: calc(.2 * var(--size)) !important;
+    transform-origin: 0 0 calc(-0.4 * var(--size)) !important;
+}
+
+.checkbox-wrapper-5 .check input[type="checkbox"]:checked + label::before,
+.checkbox-wrapper-5 .check input[type="checkbox"]:checked + label::after {
+    left: calc(1.55 * var(--size)) !important;
+    top: calc(.4 * var(--size)) !important;
+    line-height: calc(.1 * var(--size)) !important;
+    transform: rotateY(360deg) !important;
+}
+
+.checkbox-wrapper-5 .check input[type="checkbox"]:checked + label::after {
+    height: calc(.16 * var(--size)) !important;
+    top: calc(.55 * var(--size)) !important;
+    left: calc(1.6 * var(--size)) !important;
+    font-size: calc(.6 * var(--size)) !important;
+    line-height: 0 !important;
+}

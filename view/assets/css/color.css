@@ -1,0 +1,24 @@
+:root {
+    --color1: #687DAC;
+    --color2: #D2E0EE;
+    --color3: #F2E3D2;
+    --color4: #b0d8ca;
+    --color5: #78a5a0;
+    
+    /* Sobrescreve as variáveis do Bootstrap */
+    --bs-primary: var(--color1);
+    --bs-primary-rgb: 104, 125, 172; /* Valores RGB de #687DAC */
+    --bs-primary-bg-subtle: rgba(104, 125, 172, 0.1);
+}
+/* Classe personalizada para botões e outros componentes que usam a cor primária do Bootstrap */
+.custom-primary {
+    background-color: var(--color1) !important;
+    border-color: var(--color1) !important;
+}
+.custom-primary :hover {
+    background-color: #6c98f7 !important;
+}
+/* Classe para estilizar elementos específicos que precisam de uma cor de fundo mais sutil */
+.custom-primary-bg-subtle {
+    background-color: var(--bs-primary-bg-subtle) !important;
+}
