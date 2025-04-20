@@ -45,14 +45,18 @@ public class ProfissionalController {
     O @RequestBody é desnecessário e incorreto.
     Para @PathVariable não se usa @RequestBody.
     * */
-    @GetMapping("/id/{id}") //CRIADA
-    public ResponseEntity<Optional<Profissional>> getProfessionalById(@PathVariable Long id) {
-        Optional<Profissional> professional = profissionalService.getProfessionalById(id);
-        if (professional.isPresent()) {
-            return ResponseEntity.status(HttpStatus.FOUND).body(professional);
-        }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    /*
+    Sugestão de melhoria 3
+    A resposta HttpStatus.FOUND (302) é semanticamente incorreta para GETs bem sucedidos
+    O certo é HttpStatus.OK.
+    */
+    @GetMapping("/id/{id}")
+    public ResponseEntity<Profissional> getProfessionalById(@PathVariable Long id) {
+        return profissionalService.getProfessionalById(id)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
+
 
     @PutMapping("/{id}")
     public ResponseEntity<Profissional> atualizarProfissional(@PathVariable Long id, @RequestBody Profissional profissionalAtualizado) {
