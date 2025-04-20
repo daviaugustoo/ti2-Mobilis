@@ -24,8 +24,15 @@ public class Avaliacao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /*
+    Sugestão de melhoria 7
+    Ajuste na coerência entre configurações.
+    Alguns atributos como esse estão marcados com nullable = true e
+    Ao mesmo tempo, @NotNull e @NotEmpty
+    ALterar tipo de nullable para false
+     */
 
-    @Column(name = "cpf", length = 500, nullable = true)
+    @Column(name = "cpf", length = 500, nullable = false)
     @NotNull
     @NotEmpty
     @Size(max = 500)
