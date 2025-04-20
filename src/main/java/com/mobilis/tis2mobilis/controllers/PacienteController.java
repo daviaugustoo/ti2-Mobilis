@@ -45,14 +45,20 @@ public class PacienteController {
     Para melhorar a classe, considerar deletar esse método comentado.
      */
 
-    @GetMapping("/id/{id}") //CRIADA
-    public ResponseEntity<Optional<Paciente>> getPatientById(@RequestBody @PathVariable Long id) {
-        Optional<Paciente> patient = pacienteService.getPatientById(id);
-        if (patient.isPresent()) {
-            return ResponseEntity.status(HttpStatus.FOUND).body(patient);
-        }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+
+    /*
+    Sugestão de melhoria 6:
+    Evite retornar Optional dentro de um ResponseEntity.
+    O correto é fazer o map e retornar o objeto ou o status 404.
+    Dessa forma, o código fica mais coeso e mais simples.
+     */
+    @GetMapping("/id/{id}")
+    public ResponseEntity<Paciente> getPatientById(@PathVariable Long id) {
+        return pacienteService.getPatientById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
+
 
     @PutMapping("/{id}")
     public ResponseEntity<Paciente> atualizarPaciente(@PathVariable Long id, @RequestBody Paciente pacienteAtualizado) {
