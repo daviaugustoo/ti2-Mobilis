@@ -13,6 +13,86 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = Paciente.TABLE_NAME)
 public class Paciente{
+    /*
+    O padrão de projeto Builder facilita a criação de objetos com muitos atributos,
+    evitando construtores longos e melhorando a legibilidade do código.
+    Classe muito grandes como essa de paciente podem ser melhoradas usando o padrão builder.
+     */
+
+    public static class Builder {
+        private Long id;
+        private String cpf;
+        private String nome;
+        private String email;
+        private String senha;
+        private String numeroTelefone;
+        private String cep;
+        private String numeroResidencia;
+        private String descricaoDoPaciente;
+
+        public Builder id(Long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder cpf(String cpf) {
+            this.cpf = cpf;
+            return this;
+        }
+
+        public Builder nome(String nome) {
+            this.nome = nome;
+            return this;
+        }
+
+        public Builder email(String email) {
+            this.email = email;
+            return this;
+        }
+
+        public Builder senha(String senha) {
+            this.senha = senha;
+            return this;
+        }
+
+        public Builder numeroTelefone(String numeroTelefone) {
+            this.numeroTelefone = numeroTelefone;
+            return this;
+        }
+
+        public Builder cep(String cep) {
+            this.cep = cep;
+            return this;
+        }
+
+        public Builder numeroResidencia(String numeroResidencia) {
+            this.numeroResidencia = numeroResidencia;
+            return this;
+        }
+
+        public Builder descricaoDoPaciente(String descricaoDoPaciente) {
+            this.descricaoDoPaciente = descricaoDoPaciente;
+            return this;
+        }
+
+        public Paciente build() {
+            return new Paciente(this);
+        }
+    }
+
+
+    private Paciente(Builder builder) {
+        this.id = builder.id;
+        this.cpf = builder.cpf;
+        this.nome = builder.nome;
+        this.email = builder.email;
+        this.senha = builder.senha;
+        this.numeroTelefone = builder.numeroTelefone;
+        this.cep = builder.cep;
+        this.numeroResidencia = builder.numeroResidencia;
+        this.descricaoDoPaciente = builder.descricaoDoPaciente;
+    }
+
     public static final String TABLE_NAME = "paciente";
 
     @Id
