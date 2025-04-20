@@ -39,11 +39,11 @@ public class PacienteController {
         return ResponseEntity.ok(pacientes);
     }
 
-    /*@GetMapping("/{id}")
-    public ResponseEntity<Paciente> buscarPacientePorId(@PathVariable Long id) {
-        Optional<Paciente> paciente = pacienteService.buscarPacientePorId(id);
-        return paciente.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
-    }*/
+    /*
+    Sugestão de melhoria 5:
+    Deixar códigos e metodos comentados não é uma boa prática, já que polui a classe de coisas desncessárias
+    Para melhorar a classe, considerar deletar esse método comentado.
+     */
 
     @GetMapping("/id/{id}") //CRIADA
     public ResponseEntity<Optional<Paciente>> getPatientById(@RequestBody @PathVariable Long id) {
