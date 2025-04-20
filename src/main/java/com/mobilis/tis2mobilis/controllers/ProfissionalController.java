@@ -39,8 +39,14 @@ public class ProfissionalController {
         return ResponseEntity.ok(profissionais);
     }
 
+
+    /*
+    Sugestão de melhoria 02
+    O @RequestBody é desnecessário e incorreto.
+    Para @PathVariable não se usa @RequestBody.
+    * */
     @GetMapping("/id/{id}") //CRIADA
-    public ResponseEntity<Optional<Profissional>> getProfessionalById(@RequestBody @PathVariable Long id) {
+    public ResponseEntity<Optional<Profissional>> getProfessionalById(@PathVariable Long id) {
         Optional<Profissional> professional = profissionalService.getProfessionalById(id);
         if (professional.isPresent()) {
             return ResponseEntity.status(HttpStatus.FOUND).body(professional);
