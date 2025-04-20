@@ -33,18 +33,23 @@ public class Avaliacao {
      */
 
     @Column(name = "cpf", length = 500, nullable = false)
-    @NotNull
     @NotEmpty
     @Size(max = 500)
     private String cpf;
 
+    /*
+    Sugestão de melhoria 8
+    Anotação desnecessária: @NotNull.
+    Ao se utilizar @NotEmpty, automaticamente
+    Se é conferido se o atributo não é nulo, então não é necessário utilizar
+    A anotação @NotNull ao mesmo tempo que @NotEmpty
+     */
+
     @Column(name = "nome", length = 60, nullable = false)
-    @NotNull
     @NotEmpty
     private String nome;
 
     @Column(name = "datatermino", nullable = false, length = 50)
-    @NotNull
     @NotEmpty
     @Size(min = 8, max = 50)
     private String datatermino;
@@ -52,13 +57,11 @@ public class Avaliacao {
  
 
     @Column(name = "avaliacao", length = 5000, nullable = true)
-    @NotNull
     @NotEmpty
     @Size(max = 5000)
     private String avaliacao;
 
     @Column(name = "titulo", length = 200, nullable = true)
-    @NotNull
     @NotEmpty
     @Size(max = 200)
     private String titulo;
