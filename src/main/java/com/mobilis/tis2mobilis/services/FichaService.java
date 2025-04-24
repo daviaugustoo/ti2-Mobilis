@@ -47,14 +47,22 @@ public class FichaService {
         }
         return null;
     }
+
+    /*
+    Sugestão de melhoria 18:
+    Ao invés de simplesmente retornar null, é interessante que a aplicação
+    tenha uma identificação de erros mais robusta. Isso pode ser feito através
+    do lançamento de exceções específicas para cada tipo de erro, como feito abaixo
+    caso o CPF não seja encontrado.
+     */
     @Transactional
     public Ficha atualizarStatus(String cpf, boolean status) {
-        Ficha ficha = fichaRepository.findByCpf(cpf).orElse(null);
-        if (ficha != null) {
-            ficha.setStatus(status);
-            return fichaRepository.save(ficha);
-        }
-        return null;
+        return fichaRepository.findByCpf(cpf)
+                .map(ficha -> {
+                    ficha.setStatus(status);
+                    return fichaRepository.save(ficha);
+                })
+                .orElseThrow(() -> new RuntimeException("Ficha não encontrada para CPF: " + cpf));
     }
 
 }
