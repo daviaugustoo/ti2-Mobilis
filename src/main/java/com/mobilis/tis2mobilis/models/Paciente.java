@@ -1,5 +1,9 @@
 package com.mobilis.tis2mobilis.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +14,16 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+/*
+Sugestão de melhoria 15:
+Utilizar a anotação @Data do Lombok para gerar automaticamente os
+métodos getters, setters, equals, hashCode e toString é uma excelente prática
+já que diminui drasticamente a quantidade de código desneccessário. O @NoArgsConstructor
+e o @AllArgsConstructor também servem para esse fim.
+ */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = Paciente.TABLE_NAME)
 public class Paciente{
@@ -142,93 +156,6 @@ public class Paciente{
     @NotEmpty
     @Size(max = 500)
     private String descricaoDoPaciente;
-
-    public Paciente() {
-    }
-
-    public Paciente(Long id, String cpf, String nome, String email, String senha, String numeroTelefone, String cep, String numeroResidencia, String descricaoDoPaciente) {
-        this.id = id;
-        this.cpf = cpf;
-        this.nome = nome;
-        this.email = email;
-        this.senha = senha;
-        this.numeroTelefone = numeroTelefone;
-        this.cep = cep;
-        this.numeroResidencia = numeroResidencia;
-        this.descricaoDoPaciente = descricaoDoPaciente;
-    }
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getCpf() {
-        return this.cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public String getNome() {
-        return this.nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getEmail() {
-        return this.email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getSenha() {
-        return this.senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public String getNumeroTelefone() {
-        return this.numeroTelefone;
-    }
-
-    public void setNumeroTelefone(String numeroTelefone) {
-        this.numeroTelefone = numeroTelefone;
-    }
-
-    public String getCep() {
-        return this.cep;
-    }
-
-    public void setCep(String cep) {
-        this.cep = cep;
-    }
-
-    public String getNumeroResidencia() {
-        return this.numeroResidencia;
-    }
-
-    public void setNumeroResidencia(String numeroResidencia) {
-        this.numeroResidencia = numeroResidencia;
-    }
-
-    public String getDescricaoDoPaciente() {
-        return this.descricaoDoPaciente;
-    }
-
-    public void setDescricaoDoPaciente(String descricaoDoPaciente) {
-        this.descricaoDoPaciente = descricaoDoPaciente;
-    }
 
     public Paciente id(Long id) {
         setId(id);
