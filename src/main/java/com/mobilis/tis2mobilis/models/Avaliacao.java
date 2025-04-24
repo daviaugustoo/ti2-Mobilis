@@ -49,7 +49,14 @@ public class Avaliacao {
     @NotEmpty
     private String nome;
 
-    @Column(name = "datatermino", nullable = false, length = 50)
+    /*
+    Sugestão de melhoria 19
+    Ao nomear colunas que tenham mais de 1 palavra, é recomendado
+    que essas palavras sejam paradas por underscore (_) ao invés de
+    serem colocadas todas juntas. Isso facilita a leitura do nome da coluna
+    e evita erros decorrentes da dificuldade de entender o nome da coluna
+     */
+    @Column(name = "data_termino", nullable = false, length = 50)
     @NotEmpty
     @Size(min = 8, max = 50)
     private String datatermino;
