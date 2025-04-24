@@ -10,9 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 /*
 Sugestão de melhoria 15:
@@ -124,9 +122,16 @@ public class Paciente{
     @NotEmpty
     private String nome;
 
-    @Column(name = "email", nullable = false, unique = true, length = 50)
-    @NotNull
-    @NotEmpty
+    /*
+    Sugestão de melhoria 20
+    Ao anotar um atributo de entidade com @Email podemos realizar a validação se o atributo
+    está nos padrões esperados para um email, e caso não esteja, não permitir que a instância
+    seja salva ou alterada e lançar uma mensagem informando sobre essa inconsistência.
+    Isso facilita a coesão e garante que a variável irá receber um valor válido.
+     */
+    @Column(name = "email", unique = true, length = 50)
+    @Email(message = "Formato de email inválido")
+    @NotBlank
     private String email;
 
     @Column(name = "senha", nullable = false, length = 50)
