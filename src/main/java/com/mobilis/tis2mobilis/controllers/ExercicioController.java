@@ -47,12 +47,11 @@ public class ExercicioController {
         }
         return ResponseEntity.ok(exercicios);
     }
+
+
     @PutMapping("/{cpf}/{id}")
     public ResponseEntity<Exercicio> atualizarNota(@PathVariable String cpf, @PathVariable Long id, @RequestBody Map<String, Object> requestMap) {
         Integer novaNota = (Integer) requestMap.get("nota_exercicio");
-    
-      
-    
         Exercicio exercicioAtualizado = exercicioService.atualizarNota(id, novaNota);
         if (exercicioAtualizado == null) {
             return ResponseEntity.notFound().build();
@@ -60,7 +59,12 @@ public class ExercicioController {
         return ResponseEntity.ok(exercicioAtualizado);
     }
 
-    
+
+    /*
+    Sugestão de melhoria 13
+    O endpoint da requisição está incorreto,
+    já que o CPF é utilizado para atualizar o status do exercício.
+     */
     @PutMapping("/{cpf}/{id}/status")
     public ResponseEntity<Exercicio> atualizarStatus(@PathVariable String cpf, @PathVariable Long id, @RequestBody Map<String, Object> requestMap) {
         boolean novoStatus = (boolean) requestMap.get("status_exercicio");
