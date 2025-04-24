@@ -1,18 +1,110 @@
 package com.mobilis.tis2mobilis.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
+/*
+Sugestão de melhoria 15:
+Utilizar a anotação @Data do Lombok para gerar automaticamente os
+métodos getters, setters, equals, hashCode e toString é uma excelente prática
+já que diminui drasticamente a quantidade de código desneccessário. O @NoArgsConstructor
+e o @AllArgsConstructor também servem para esse fim.
+ */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = Paciente.TABLE_NAME)
 public class Paciente{
+    /*
+    O padrão de projeto Builder facilita a criação de objetos com muitos atributos,
+    evitando construtores longos e melhorando a legibilidade do código.
+    Classe muito grandes como essa de paciente podem ser melhoradas usando o padrão builder.
+     */
+
+    public static class Builder {
+        private Long id;
+        private String cpf;
+        private String nome;
+        private String email;
+        private String senha;
+        private String numeroTelefone;
+        private String cep;
+        private String numeroResidencia;
+        private String descricaoDoPaciente;
+
+        public Builder id(Long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder cpf(String cpf) {
+            this.cpf = cpf;
+            return this;
+        }
+
+        public Builder nome(String nome) {
+            this.nome = nome;
+            return this;
+        }
+
+        public Builder email(String email) {
+            this.email = email;
+            return this;
+        }
+
+        public Builder senha(String senha) {
+            this.senha = senha;
+            return this;
+        }
+
+        public Builder numeroTelefone(String numeroTelefone) {
+            this.numeroTelefone = numeroTelefone;
+            return this;
+        }
+
+        public Builder cep(String cep) {
+            this.cep = cep;
+            return this;
+        }
+
+        public Builder numeroResidencia(String numeroResidencia) {
+            this.numeroResidencia = numeroResidencia;
+            return this;
+        }
+
+        public Builder descricaoDoPaciente(String descricaoDoPaciente) {
+            this.descricaoDoPaciente = descricaoDoPaciente;
+            return this;
+        }
+
+        public Paciente build() {
+            return new Paciente(this);
+        }
+    }
+
+
+    private Paciente(Builder builder) {
+        this.id = builder.id;
+        this.cpf = builder.cpf;
+        this.nome = builder.nome;
+        this.email = builder.email;
+        this.senha = builder.senha;
+        this.numeroTelefone = builder.numeroTelefone;
+        this.cep = builder.cep;
+        this.numeroResidencia = builder.numeroResidencia;
+        this.descricaoDoPaciente = builder.descricaoDoPaciente;
+    }
+
     public static final String TABLE_NAME = "paciente";
 
     @Id
@@ -30,9 +122,16 @@ public class Paciente{
     @NotEmpty
     private String nome;
 
-    @Column(name = "email", nullable = false, unique = true, length = 50)
-    @NotNull
-    @NotEmpty
+    /*
+    Sugestão de melhoria 20
+    Ao anotar um atributo de entidade com @Email podemos realizar a validação se o atributo
+    está nos padrões esperados para um email, e caso não esteja, não permitir que a instância
+    seja salva ou alterada e lançar uma mensagem informando sobre essa inconsistência.
+    Isso facilita a coesão e garante que a variável irá receber um valor válido.
+     */
+    @Column(name = "email", unique = true, length = 50)
+    @Email(message = "Formato de email inválido")
+    @NotBlank
     private String email;
 
     @Column(name = "senha", nullable = false, length = 50)
@@ -62,93 +161,6 @@ public class Paciente{
     @NotEmpty
     @Size(max = 500)
     private String descricaoDoPaciente;
-
-    public Paciente() {
-    }
-
-    public Paciente(Long id, String cpf, String nome, String email, String senha, String numeroTelefone, String cep, String numeroResidencia, String descricaoDoPaciente) {
-        this.id = id;
-        this.cpf = cpf;
-        this.nome = nome;
-        this.email = email;
-        this.senha = senha;
-        this.numeroTelefone = numeroTelefone;
-        this.cep = cep;
-        this.numeroResidencia = numeroResidencia;
-        this.descricaoDoPaciente = descricaoDoPaciente;
-    }
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getCpf() {
-        return this.cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public String getNome() {
-        return this.nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getEmail() {
-        return this.email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getSenha() {
-        return this.senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public String getNumeroTelefone() {
-        return this.numeroTelefone;
-    }
-
-    public void setNumeroTelefone(String numeroTelefone) {
-        this.numeroTelefone = numeroTelefone;
-    }
-
-    public String getCep() {
-        return this.cep;
-    }
-
-    public void setCep(String cep) {
-        this.cep = cep;
-    }
-
-    public String getNumeroResidencia() {
-        return this.numeroResidencia;
-    }
-
-    public void setNumeroResidencia(String numeroResidencia) {
-        this.numeroResidencia = numeroResidencia;
-    }
-
-    public String getDescricaoDoPaciente() {
-        return this.descricaoDoPaciente;
-    }
-
-    public void setDescricaoDoPaciente(String descricaoDoPaciente) {
-        this.descricaoDoPaciente = descricaoDoPaciente;
-    }
 
     public Paciente id(Long id) {
         setId(id);

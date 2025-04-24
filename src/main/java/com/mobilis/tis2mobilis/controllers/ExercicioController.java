@@ -47,12 +47,18 @@ public class ExercicioController {
         }
         return ResponseEntity.ok(exercicios);
     }
-    @PutMapping("/{cpf}/{id}")
-    public ResponseEntity<Exercicio> atualizarNota(@PathVariable String cpf, @PathVariable Long id, @RequestBody Map<String, Object> requestMap) {
-        Integer novaNota = (Integer) requestMap.get("nota_exercicio");
-    
-      
-    
+
+
+    /*
+    Sugestão de melhoria 14:
+    O nome da variável requestMap está pouco intuitivo e isso prejudica
+    a legibilidade. Usar nomes significativos para os métodos e atributos
+    é fundamental para melhorar a legibilidade e o entendimento sobre qual
+    o papel de cada atributo e variável no código.
+     */
+    @PutMapping("/{id}")
+    public ResponseEntity<Exercicio> atualizarNota(@PathVariable Long id, @RequestBody Map<String, Object> dadosAtualizacao) {
+        Integer novaNota = (Integer) dadosAtualizacao.get("nota_exercicio");
         Exercicio exercicioAtualizado = exercicioService.atualizarNota(id, novaNota);
         if (exercicioAtualizado == null) {
             return ResponseEntity.notFound().build();
@@ -60,13 +66,15 @@ public class ExercicioController {
         return ResponseEntity.ok(exercicioAtualizado);
     }
 
-    
-    @PutMapping("/{cpf}/{id}/status")
-    public ResponseEntity<Exercicio> atualizarStatus(@PathVariable String cpf, @PathVariable Long id, @RequestBody Map<String, Object> requestMap) {
+
+    /*
+    Sugestão de melhoria 13
+    O endpoint da requisição está incorreto,
+    já que o CPF é utilizado para atualizar o status do exercício.
+     */
+    @PutMapping("/{id}/status")
+    public ResponseEntity<Exercicio> atualizarStatus(@PathVariable Long id, @RequestBody Map<String, Object> requestMap) {
         boolean novoStatus = (boolean) requestMap.get("status_exercicio");
-    
-      
-    
         Exercicio exercicioAtualizado = exercicioService.atualizarStatus(id, novoStatus);
         if (exercicioAtualizado == null) {
             return ResponseEntity.notFound().build();

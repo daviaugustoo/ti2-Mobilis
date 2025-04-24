@@ -94,6 +94,13 @@ public class Ficha {
         this.nome = nome;
     }
 
+    /*
+    Sugestão de melhoria 9
+    Melhoria no nome do metodo
+    O getter e o setter poderiam ser melhorados se colocado
+    getDataInicio e setDataInicio ao invés de apenas getInicio e setInicio
+    Ja que sua variável correspondente se chama dataInicio.
+     */
     public String getInicio() {
         return datainicio;
     }

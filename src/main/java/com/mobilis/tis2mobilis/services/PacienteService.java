@@ -32,6 +32,12 @@ public class PacienteService {
         return pacienteRepository.findById(id);
     }
 
+    /*
+    SUgestão de melhoria 11:
+    Afim de padronizar o projeto, é recomendado que todas as
+    variáveis e todos os métodos estejam em apenas em inglês ou apenas em português.
+    Dessa forma o código fica mais legível e fácil de entender.
+     */
     public Optional<Paciente> buscarPacientePorCpf(String cpf) {
         return pacienteRepository.findByCpf(cpf);
     }

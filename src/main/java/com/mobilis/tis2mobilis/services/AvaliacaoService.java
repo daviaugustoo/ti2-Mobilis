@@ -17,7 +17,15 @@ public class AvaliacaoService {
         this.avaliacaoRepository = avaliacaoRepository;
     }
 
+    /*
+    Sugestão de melhoria 12:
+    Para evitar possíveis erros durante a execução desse método é interessante
+    Adicionar validação para verificar se a avaliação não é nula antes de salvá-la.
+     */
     public Avaliacao salvarAvaliacao(Avaliacao avaliacao) {
+        if (avaliacao == null) {
+            throw new IllegalArgumentException("Avaliação não pode ser nula");
+        }
         return avaliacaoRepository.save(avaliacao);
     }
 

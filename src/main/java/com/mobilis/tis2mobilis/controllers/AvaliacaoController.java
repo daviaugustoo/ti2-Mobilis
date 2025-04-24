@@ -55,6 +55,10 @@ public class AvaliacaoController {
         return avaliacao.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    /*
+     Sugestão de melhoria 04:
+     Está sendo permitido alterar o CPF, o que pode ser uma má prática considerando que o CPF é chave primária
+     */
     @PutMapping("/{cpf}")
     public ResponseEntity<Avaliacao> atualizarAvaliacao(@PathVariable String cpf, @RequestBody Avaliacao avaliacaoAtualizada) {
         Optional<Avaliacao> avaliacaoOptional = avaliacaoService.buscarAvaliacaoPorCpf(cpf);
@@ -64,8 +68,6 @@ public class AvaliacaoController {
         }
 
         Avaliacao avaliacaoExistente = avaliacaoOptional.get();
-        avaliacaoExistente.setCpf(avaliacaoAtualizada.getCpf());
-      
         avaliacaoExistente.setTermino(avaliacaoAtualizada.getTermino());
         avaliacaoExistente.setNome(avaliacaoAtualizada.getNome());
         avaliacaoExistente.setAvaliacao(avaliacaoAtualizada.getAvaliacao());

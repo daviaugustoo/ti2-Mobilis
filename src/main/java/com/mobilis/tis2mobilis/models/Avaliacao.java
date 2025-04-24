@@ -24,20 +24,39 @@ public class Avaliacao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /*
+    Sugestão de melhoria 7
+    Ajuste na coerência entre configurações.
+    Alguns atributos como esse estão marcados com nullable = true e
+    Ao mesmo tempo, @NotNull e @NotEmpty
+    ALterar tipo de nullable para false
+     */
 
-    @Column(name = "cpf", length = 500, nullable = true)
-    @NotNull
+    @Column(name = "cpf", length = 500, nullable = false)
     @NotEmpty
     @Size(max = 500)
     private String cpf;
 
+    /*
+    Sugestão de melhoria 8
+    Anotação desnecessária: @NotNull.
+    Ao se utilizar @NotEmpty, automaticamente
+    Se é conferido se o atributo não é nulo, então não é necessário utilizar
+    A anotação @NotNull ao mesmo tempo que @NotEmpty
+     */
+
     @Column(name = "nome", length = 60, nullable = false)
-    @NotNull
     @NotEmpty
     private String nome;
 
-    @Column(name = "datatermino", nullable = false, length = 50)
-    @NotNull
+    /*
+    Sugestão de melhoria 19
+    Ao nomear colunas que tenham mais de 1 palavra, é recomendado
+    que essas palavras sejam paradas por underscore (_) ao invés de
+    serem colocadas todas juntas. Isso facilita a leitura do nome da coluna
+    e evita erros decorrentes da dificuldade de entender o nome da coluna
+     */
+    @Column(name = "data_termino", nullable = false, length = 50)
     @NotEmpty
     @Size(min = 8, max = 50)
     private String datatermino;
@@ -45,13 +64,11 @@ public class Avaliacao {
  
 
     @Column(name = "avaliacao", length = 5000, nullable = true)
-    @NotNull
     @NotEmpty
     @Size(max = 5000)
     private String avaliacao;
 
     @Column(name = "titulo", length = 200, nullable = true)
-    @NotNull
     @NotEmpty
     @Size(max = 200)
     private String titulo;
